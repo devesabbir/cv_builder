@@ -13,8 +13,9 @@ import SiteNav from './nav/SiteNav';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <Provider store={store}>
+             
       <Router>
-          <SiteNav/>
+       <SiteNav/>
           <App />
       </Router>
    </Provider>

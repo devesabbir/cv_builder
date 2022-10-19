@@ -10,6 +10,9 @@ import Registration from './pages/registration/Registration';
 import Cookies  from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { login } from './redux/login/loginSlice';
+import Home from './pages/home/Home';
+import NotFound404 from './pages/notfound/NotFound404';
+
 
 
 function App() {
@@ -27,20 +30,25 @@ function App() {
         }
     
        }).then( res => {
-       dispatch(login(res.data.user_info))
+       
+       dispatch(login(res.data.data))
     }) 
 
    }
      
   },[token, dispatch])
-
+ 
   return (
+    <> 
     <Routes>
-         <Route path='*'  element={ <h2>404 Not Found!</h2>} />
-         <Route path='/'  element={ <AuthenticetUser> <TemplateOne/> </AuthenticetUser>} />
+         <Route path='/template-one'  element={ <AuthenticetUser> <TemplateOne/> </AuthenticetUser>} />
          <Route path='/login'  element={ <AuthRedirect> <Login/> </AuthRedirect>  } />
-         <Route path='/registration'  element={ <AuthRedirect> <Registration/> </AuthRedirect>  } />
+         <Route path='/registration'  element={ <AuthRedirect> <Registration/> </AuthRedirect> } />
+         <Route path='/' element={ <AuthenticetUser> <Home/> </AuthenticetUser>  } />
+         <Route path='*'  element={ <NotFound404/>} />
    </Routes>
+    </>
+   
   );
 }
 

@@ -5,25 +5,40 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux/login/loginSlice';
+import { Link,NavLink} from 'react-router-dom';
+import './SiteNav.css'
+
+import logo from '../assets/142-1423821_cvs-logo-jpeg-mcgregor-graham-advertising-agency.png'
+
+
 
 function SiteNav() {
+
    const dispatch = useDispatch()
 
    const logOutHandler = () => {
       Cookies.remove('token')
       dispatch(logout()) 
+  
    }
+
+   
+
 
   return (
     <Navbar className='sticky-top' bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-          <button onClick={logOutHandler}>Log Out</button>
+          <Link className='logo' to={''}><img src={logo} alt="" /> <span>Builder</span></Link>
+          <div className="ms-auto">
+
+               <ul className='nav'>
+                  <li> <NavLink  to='/' >Home</NavLink></li>
+                  <li> <NavLink to='/template-one' >Features</NavLink></li>
+                  <li> <NavLink to='/template-two' >Pricing</NavLink></li>
+               </ul>
+                       
+          </div>
+          <button className='ms-3 button-50' onClick={logOutHandler} >Log Out</button>
         </Container>
      </Navbar>
       
